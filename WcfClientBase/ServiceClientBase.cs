@@ -12,6 +12,11 @@ namespace WcfClientBase
     public abstract class ServiceClientBase<TServiceClient> where TServiceClient : ICommunicationObject, new()
     {
         /// <summary>
+        /// Optional timeout value for closing channel
+        /// </summary>
+        protected TimeSpan? CloseTimeout { get; set; }
+        
+        /// <summary>
         /// Initializes a new instance of the TServiceClient using parameterless constructor.
         /// Override if you need to use other constructors.
         /// Called before every service operation.
@@ -33,7 +38,15 @@ namespace WcfClientBase
             try
             {
                 serviceCall.Invoke(serviceClient);
-                serviceClient.Close();
+                
+                if(CloseTimeout.HasValue)
+                {
+                    serviceClient.Close(CloseTimeout.Value);
+                }
+                else
+                {
+                    serviceClient.Close();
+                }
             }
             catch (FaultException exception)
             {
