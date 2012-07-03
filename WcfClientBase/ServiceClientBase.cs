@@ -137,19 +137,28 @@ namespace WcfClientBase
         /// Method for handling FaultException
         /// </summary>
         /// <param name="exception">Exception that was thrown by the ServiceClient</param>
-        protected virtual void HandleFaultException(FaultException exception) { }
+        protected virtual void HandleFaultException(FaultException exception)
+        {
+            throw exception;
+        }
 
         /// <summary>
         /// Method for handling CommunicationException
         /// </summary>
         /// <param name="exception">Exception that was thrown by the ServiceClient</param>
-        protected virtual void HandleCommunicationException(CommunicationException exception) { }
+        protected virtual void HandleCommunicationException(CommunicationException exception)
+        {
+            throw exception;
+        }
 
         /// <summary>
         /// Method for handling TimeoutException
         /// </summary>
-        /// <param name="ex">Exception that was thrown by the ServiceClient</param>
-        protected virtual void HandleTimeoutException(TimeoutException ex) { }
+        /// <param name="exception">Exception that was thrown by the ServiceClient</param>
+        protected virtual void HandleTimeoutException(TimeoutException exception)
+        {
+            throw exception;
+        }
 
     }
 }
