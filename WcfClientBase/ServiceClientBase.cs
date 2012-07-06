@@ -50,18 +50,18 @@ namespace WcfClientBase
             }
             catch (FaultException exception)
             {
-                HandleFaultException(exception);
                 serviceClient.Abort();
+                HandleFaultException(exception);
             }
             catch (CommunicationException exception)
             {
-                HandleCommunicationException(exception);
                 serviceClient.Abort();
+                HandleCommunicationException(exception);
             }
             catch (TimeoutException exception)
             {
-                HandleTimeoutException(exception);
                 serviceClient.Abort();
+                HandleTimeoutException(exception);
             }
 
         }
@@ -76,7 +76,7 @@ namespace WcfClientBase
         {
             TResponse result = default(TResponse);
 
-            HandleServiceCall((item => result = serviceMethod.Invoke(item)));
+            HandleServiceCall(item => result = serviceMethod.Invoke(item));
 
             return result;
         }
@@ -124,11 +124,11 @@ namespace WcfClientBase
         {
             bool result = false;
 
-            HandleServiceCall((item =>
-                                     {
-                                         serviceMethod.Invoke(item);
-                                         result = true;
-                                     }));
+            HandleServiceCall(item =>
+                                  {
+                                      serviceMethod.Invoke(item);
+                                      result = true;
+                                  });
 
             return result;
         }
