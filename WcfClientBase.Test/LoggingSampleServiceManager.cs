@@ -26,5 +26,10 @@ namespace WcfClientBase.Test
             _logger.LogException(exception);
         }
 
+        public void Foo()
+        {
+            PerformServiceOperation(client => client.ThrowTimeoutException());
+        }
+
     }
 }

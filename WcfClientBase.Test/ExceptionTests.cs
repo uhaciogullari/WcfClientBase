@@ -22,15 +22,15 @@ namespace WcfClientBase.Test
         }
 
         [Test]
-        public void ThrowCommunicationException_ReThrows_DefaultImplementation()
-        {
-            Assert.Throws(typeof(CommunicationException), _defaultServiceManager.ThrowCommunicationException);
-        }
-
-        [Test]
         public void ThrowFaultException_ReThrows_DefaultImplementation()
         {
             Assert.Throws(typeof(FaultException), _defaultServiceManager.ThrowFaultException);
+        }
+
+        [Test]
+        public void ThrowCommunicationException_ReThrows_DefaultImplementation()
+        {
+            Assert.Throws(typeof(CommunicationException), _defaultServiceManager.ThrowCommunicationException);
         }
 
         [Test]
@@ -40,24 +40,27 @@ namespace WcfClientBase.Test
         }
 
         [Test]
-        public void ThrowTimeOutException_LogsException_LoggingImplementation()
+        public void ThrowFaultException_LogsFaultException_LoggingImplementation()
         {
-            _loggerMock.Setup(logger => logger.LogException(It.IsAny<Exception>())).Verifiable();
+            _loggerMock.Setup(logger => logger.LogException(It.Is<FaultException>(exception => true))).Verifiable();
 
-            _loggingServiceManager.ThrowTimeoutException();
+            _loggingServiceManager.ThrowFaultException();
         }
 
         [Test]
-        public void ThrowTimeOutException_StackTraceContainsOperationName_Verifiable()
+        public void ThrowCommunicationException_LogsCommunicationException_LoggingImplementation()
         {
-            const string OPERATION_NAME = "ThrowTimeoutException";
+            _loggerMock.Setup(logger => logger.LogException(It.Is<CommunicationException>(exception => true))).Verifiable();
 
-            _loggerMock.Setup(logger => logger.LogException(
-                                            It.Is<Exception>(ex => ex.StackTrace.Contains(OPERATION_NAME))))
-                        .Verifiable();
+            _loggingServiceManager.ThrowCommunicationException();
+        }
+
+        [Test]
+        public void ThrowTimeOutException_LogsTimeOutException_LoggingImplementation()
+        {
+            _loggerMock.Setup(logger => logger.LogException(It.Is<TimeoutException>(exception => true))).Verifiable();
 
             _loggingServiceManager.ThrowTimeoutException();
         }
-
     }
 }
