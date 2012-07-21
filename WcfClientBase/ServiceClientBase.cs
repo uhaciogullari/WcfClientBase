@@ -75,7 +75,6 @@ namespace WcfClientBase
         protected TResponse PerformServiceOperation<TResponse>(Func<TServiceClient, TResponse> serviceMethod)
         {
             TResponse result = default(TResponse);
-
             HandleServiceCall(item => result = serviceMethod.Invoke(item));
 
             return result;
