@@ -1,9 +1,15 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfClientBase", "WcfClientBase\WcfClientBase.csproj", "{A0EB3D73-5C91-408B-BABB-9630ABDFC46B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfClientBase.Test", "WcfClientBase.Test\WcfClientBase.Test.csproj", "{93DFD335-ABE5-4B94-9C31-BBD51F243ABF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget Package", "Nuget Package", "{A891F628-C2E8-4537-AA25-0AD068A925FF}"
+	ProjectSection(SolutionItems) = preProject
+		build.proj = build.proj
+		WcfClientBase.nuspec = WcfClientBase.nuspec
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
