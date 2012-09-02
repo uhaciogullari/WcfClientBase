@@ -2,7 +2,7 @@
 <package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <id>WcfClientBase</id>
-    <version>0.7.2</version>
+    <version>0.7.3</version>
     <authors>Ufuk Hacıoğulları</authors>
     <owners>Ufuk Hacıoğulları</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -14,8 +14,16 @@
     </summary>
   </metadata>
   <files>
-    <file src="bin\Release\WcfClientBase.dll" target="lib\net40" />
-    <file src="bin\Release\WcfClientBase.pdb" target="lib\net40" />
-    <file src="bin\Release\WcfClientBase.xml" target="lib\net40" />
+    <file src="BuildArtifacts\bin\net35\WcfClientBase.dll" target="lib\net35" />
+    <file src="BuildArtifacts\bin\net35\WcfClientBase.pdb" target="lib\net35" />
+    <file src="BuildArtifacts\bin\net35\WcfClientBase.xml" target="lib\net35" />
+
+    <file src="BuildArtifacts\bin\net40\WcfClientBase.dll" target="lib\net40" />
+    <file src="BuildArtifacts\bin\net40\WcfClientBase.pdb" target="lib\net40" />
+    <file src="BuildArtifacts\bin\net40\WcfClientBase.xml" target="lib\net40" />
+
+    <file src="BuildArtifacts\bin\net45\WcfClientBase.dll" target="lib\net45" />
+    <file src="BuildArtifacts\bin\net45\WcfClientBase.pdb" target="lib\net45" />
+    <file src="BuildArtifacts\bin\net45\WcfClientBase.xml" target="lib\net45" />
   </files>
 </package>
