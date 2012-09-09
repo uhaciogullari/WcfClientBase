@@ -2,12 +2,12 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>WcfClientBase</id>
-    <version>0.7.3</version>
+    <version>0.7.4</version>
     <authors>Ufuk Hacıoğulları</authors>
     <owners>Ufuk Hacıoğulları</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>WcfClientBase contains a simple base class that encapsulates WCF service calls.</description>
-    <projectUrl>https://github.com/ufukh/WcfClientBase</projectUrl>
+    <projectUrl>https://github.com/uhaciogullari/WcfClientBase</projectUrl>
     <tags>wcf</tags>
     <summary>
       WcfClientBase introduces an abstract class that handles creating a service client, making the call, closing the channel or aborting it if any exceptions occur. You can also extend exception handling mechanism. At the moment, it doesn't support asynchronous calls. It's thread safe, it can be used with singleton life-cycle to make successive service calls.
