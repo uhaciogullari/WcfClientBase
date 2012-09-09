@@ -27,22 +27,4 @@ NuGet Package : https://nuget.org/packages/WcfClientBase
             return TryPerformServiceOperation(client => client.GetUserTypeFromProfileID(userId), out username);
         }
 
-        
-        //these exception handling methods should be overriden in another common subclass
-        //they re-throw exceptions by default
-        protected override void HandleCommunicationException(CommunicationException exception)
-        {
-            Console.WriteLine(exception.Message);
-        }
-
-        protected override void HandleFaultException(FaultException exception)
-        {
-            Console.WriteLine(exception.Message);
-        }
-
-        protected override void HandleTimeoutException(TimeoutException exception)
-        {
-            Console.WriteLine(exception.Message);
-        }
-
     }
