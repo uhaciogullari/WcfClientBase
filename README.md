@@ -28,3 +28,7 @@ NuGet Package : https://nuget.org/packages/WcfClientBase
         }
 
     }
+	
+## License
+
+WcfClientBase is licensed under [MIT](http://opensource.org/licenses/MIT "Read more about the MIT license form"). Refer to license.txt for more information.
