@@ -15,6 +15,7 @@ using System.Threading;
 
 namespace WcfClientBase
 {
+    //http://blogs.u2u.be/diederik/post/2010/07/29/Get-your-WCF-client-configuration-from-anywhere.aspx
     public static class CustomChannelFactoryHelper
     {
         /// <summary>
@@ -62,6 +63,7 @@ namespace WcfClientBase
 
                 return proxyConfigurationPath;
             }
+            return null;
         }
 
         /// <summary>
@@ -159,15 +161,20 @@ namespace WcfClientBase
         /// </summary>
         private static ChannelEndpointElement LookupChannel(ServiceModelSectionGroup serviceModeGroup, string configurationName, string contractName, bool wildcard)
         {
-            foreach (ChannelEndpointElement endpoint in serviceModeGroup.Client.Endpoints)
-            {
-                if (endpoint.Contract == contractName && (endpoint.Name == configurationName || wildcard))
-                {
-                    return endpoint;
-                }
-            }
 
-            return null;
+            try
+            {
+                ChannelEndpointElement channelEndpointElement = serviceModeGroup.Client.Endpoints.Cast<ChannelEndpointElement>()
+               .FirstOrDefault(endpoint => endpoint.Contract == contractName
+                   && (endpoint.Name == configurationName || wildcard));
+
+                return channelEndpointElement;
+            }
+            catch (Exception)
+            {
+
+                throw new InvalidOperationException("ChannelEndpoint Not Found or Missing ");
+            }
         }
 
         /// <summary>
@@ -199,27 +206,37 @@ namespace WcfClientBase
         {
             EndpointIdentity identity = null;
             PropertyInformationCollection properties = element.ElementInformation.Properties;
-            if (properties["userPrincipalName"].ValueOrigin != PropertyValueOrigin.Default)
+            PropertyInformation userPrincipalName = properties["userPrincipalName"];
+
+            if (userPrincipalName != null && userPrincipalName.ValueOrigin != PropertyValueOrigin.Default)
             {
                 return EndpointIdentity.CreateUpnIdentity(element.UserPrincipalName.Value);
             }
 
-            if (properties["servicePrincipalName"].ValueOrigin != PropertyValueOrigin.Default)
+            PropertyInformation servicePrincipalName = properties["servicePrincipalName"];
+
+            if (servicePrincipalName != null && servicePrincipalName.ValueOrigin != PropertyValueOrigin.Default)
             {
                 return EndpointIdentity.CreateSpnIdentity(element.ServicePrincipalName.Value);
             }
 
-            if (properties["dns"].ValueOrigin != PropertyValueOrigin.Default)
+            PropertyInformation dns = properties["dns"];
+
+            if (dns != null && dns.ValueOrigin != PropertyValueOrigin.Default)
             {
                 return EndpointIdentity.CreateDnsIdentity(element.Dns.Value);
             }
 
-            if (properties["rsa"].ValueOrigin != PropertyValueOrigin.Default)
+            PropertyInformation rsa = properties["rsa"];
+
+            if (rsa != null && rsa.ValueOrigin != PropertyValueOrigin.Default)
             {
                 return EndpointIdentity.CreateRsaIdentity(element.Rsa.Value);
             }
 
-            if (properties["certificate"].ValueOrigin != PropertyValueOrigin.Default)
+            PropertyInformation certificate = properties["certificate"];
+
+            if (certificate != null && certificate.ValueOrigin != PropertyValueOrigin.Default)
             {
                 X509Certificate2Collection supportingCertificates = new X509Certificate2Collection();
                 supportingCertificates.Import(Convert.FromBase64String(element.Certificate.EncodedValue));

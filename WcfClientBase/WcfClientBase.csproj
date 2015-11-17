@@ -36,11 +36,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomChannelFactory.cs" />
+    <Compile Include="ChannelFactory.cs" />
     <Compile Include="CustomChannelFactoryHelper.cs" />
     <Compile Include="IServiceConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
