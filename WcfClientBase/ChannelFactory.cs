@@ -26,7 +26,7 @@ namespace WcfClientBase
         /// <param name="endpointConfigurationName">Name of the endpoint in the configuration file.</param>
         protected override void ApplyConfiguration(string endpointConfigurationName)
         {
-            CustomChannelFactoryHelper.ApplyConfiguration(ConfigurationFileName, Endpoint, endpointConfigurationName);
+            ChannelFactoryHelper.ApplyConfiguration(ConfigurationFileName, Endpoint, endpointConfigurationName);
         }
     }
 }

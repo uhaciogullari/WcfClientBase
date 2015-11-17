@@ -16,7 +16,7 @@ using System.Threading;
 namespace WcfClientBase
 {
     //http://blogs.u2u.be/diederik/post/2010/07/29/Get-your-WCF-client-configuration-from-anywhere.aspx
-    public static class CustomChannelFactoryHelper
+    public static class ChannelFactoryHelper
     {
         /// <summary>
         /// Lock on the file.
